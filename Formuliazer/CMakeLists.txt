@@ -14,8 +14,9 @@ FetchContent_Declare(
     GIT_PROGRESS TRUE
 )
 FetchContent_MakeAvailable(raylib)
-
-add_executable (Formuliazer "libs/Renderer.h" "src/Renderer.cpp" "Formuliazer.cpp" "Formuliazer.h")
+file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+add_executable (Formuliazer "${SRC_FILES}" "Formuliazer.cpp" "Formuliazer.h")
+target_include_directories(Formuliazer PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/libs/")
 target_link_libraries(Formuliazer PRIVATE raylib)
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

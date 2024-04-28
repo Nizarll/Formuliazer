@@ -4,5 +4,7 @@
 #pragma once
 
 #include <iostream>
+#include "libs/Renderer.h"
+#include "libs/imgui.h"
 
 // TODO: Référencez ici les en-têtes supplémentaires nécessaires à votre programme.

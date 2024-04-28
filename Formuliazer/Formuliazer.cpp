@@ -2,31 +2,47 @@
 //
 
 #include "Formuliazer.h"
-#include "libs/Renderer.h"
-#include "direct.h"
 
+constexpr auto WIDTH = 800, HEIGHT = 400;
 
-int main()
+void setup()
 {
 	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	InitWindow(800, 400, "Formuliazer");
 	SetTargetFPS(120);
-	Renderer* renderer = new Renderer();
-	std::shared_ptr<Object> _obj = std::static_pointer_cast<Object>(std::make_shared<ImageObj>(Vector2{ 500, 500 },
-		Vector2{ 100, 100 },
-		std::string{ "lepepe.png" }
-	));
-	std::static_pointer_cast<ImageObj>(_obj)->init();
-	renderer->add_item(_obj);
-	char cwd[1024];
-	while (!WindowShouldClose()) {
-		BeginDrawing();
-		ClearBackground(WHITE);
-		for (std::shared_ptr<Object> _obj : renderer->get_items()) {
-			_obj->render();
-		}
-		EndDrawing();
-	}
-	return 0;
 }
 
+int main()
+{
+	setup();
+	auto bg_img = new ImageObj(
+		Vector2{ 100, 100 },
+		Vector2{ 200, 200},
+		std::string{ "grid.png" }
+	);
+	auto renderer = std::make_unique<Renderer>();
+	{
+		bg_img->init();
+	}
+	while (!WindowShouldClose()) {
+		BeginDrawing();
+		render_background(bg_img);
+		for (auto& _o : renderer->get_items()) {
+			_o->render();
+		}
+		static bool show_window = true;
+		ImGui::Begin("My Window", &show_window);
+
+		if (ImGui::Button("Save"))
+		{
+			std::cout << "Button Pressed"; //or your IDE equivalent output log
+		}
+
+		if (ImGui::Button("Cancel"))
+		{
+			std::cout << "Button Pressed"; //or your IDE equivalent output log
+		}
+		ImGui::End();
+		EndDrawing();
+	}
+}
