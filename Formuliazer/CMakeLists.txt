@@ -15,7 +15,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-add_executable (Formuliazer "${SRC_FILES}" "Formuliazer.cpp" "Formuliazer.h")
+add_executable (Formuliazer "${SRC_FILES}" "formualizer.cpp" "formualizer.h")
 target_include_directories(Formuliazer PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/libs/")
 target_link_libraries(Formuliazer PRIVATE raylib)
 

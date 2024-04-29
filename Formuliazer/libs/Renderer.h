@@ -1,9 +1,20 @@
 #pragma once
 
 #include "raylib.h"
+#include "imgui.h"
+#include "rlImGui.h"
 #include <memory>
 #include <string>
 #include <vector>
+#include <array>
+
+enum Fonts {
+	CASCADIA_COVE_14 = 0,
+	CASCADIA_COVE_20,
+	CASCADIA_MONO_14,
+	CASCADIA_MONO_20,
+	FONTS_LEN
+};
 
 class Object {
 private:
@@ -44,3 +55,5 @@ public:
 };
 
 void render_background(ImageObj* background_image);
+void setup_style();
+void use_font(int font);

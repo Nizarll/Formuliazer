@@ -259,7 +259,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
     // Exceptionally add an extra assert here for people confused about initial Dear ImGui setup
     // Most functions would normally just assert/crash if the context is missing.
     IM_ASSERT(ImGui::GetCurrentContext() != NULL && "Missing Dear ImGui context. Refer to examples app!");
-
+    
     // Examples Apps (accessible from the "Examples" menu)
     static bool show_app_main_menu_bar = false;
     static bool show_app_console = false;
@@ -6547,7 +6547,6 @@ void ImGui::ShowStyleEditor(ImGuiStyle* ref)
     // (without a reference style pointer, we will use one compared locally as a reference)
     ImGuiStyle& style = ImGui::GetStyle();
     static ImGuiStyle ref_saved_style;
-
     // Default to using internal storage as reference
     static bool init = true;
     if (init && ref == NULL)
@@ -6555,13 +6554,10 @@ void ImGui::ShowStyleEditor(ImGuiStyle* ref)
     init = false;
     if (ref == NULL)
         ref = &ref_saved_style;
-
     ImGui::PushItemWidth(ImGui::GetWindowWidth() * 0.50f);
-
     if (ImGui::ShowStyleSelector("Colors##Selector"))
         ref_saved_style = style;
     ImGui::ShowFontSelector("Fonts##Selector");
-
     // Simplified Settings (expose floating-pointer border sizes as boolean representing 0.0f or 1.0f)
     if (ImGui::SliderFloat("FrameRounding", &style.FrameRounding, 0.0f, 12.0f, "%.0f"))
         style.GrabRounding = style.FrameRounding; // Make GrabRounding always the same value as FrameRounding
